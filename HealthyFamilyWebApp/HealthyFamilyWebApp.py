@@ -82,7 +82,7 @@ def securelogin(username):
 def loadOrders(username):
     conn=mysql.connect()
     cursor=conn.cursor()
-    cursor.callproc('sp_showOrders',(username,))
+    cursor.callproc('usp_showOrders',(username,))
     data=cursor.fetchall()
 
 
