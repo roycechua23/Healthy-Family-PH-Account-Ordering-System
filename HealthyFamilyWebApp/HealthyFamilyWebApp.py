@@ -89,6 +89,27 @@ def loadOrders(username):
     cursor.close()
     conn.close()
 
+@healthyfamily.route("/orderWindow")
+def orderWindow():
+    if session.get('user'):
+        return render_template('orderwindow.html')
+    else:
+        return abort(401)
+
+@healthyfamily.route("/processOrder",methods=['POST'])
+def processOrder():
+    if request.method == 'POST' and session.get('user'):
+        _quantity = request.form['InputOrderQuantity']
+        print(_quantity)
+
+        html="""<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <h1>Request Processed </h1>
+        <button class="btn btn-lg btn-primary btn-block" type="button" value="Input" onclick="window.close();" >Confirm</button>
+        """
+        return html
+    else:
+        return abort(401)    
+    
 @healthyfamily.route("/ShowSignup")
 def signup():
     return render_template('signup.html')
