@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Healthy Family</title>
+    <!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="icon" type="image/png" sizes="96x96" href="../static/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../static/images/favicon-96x96.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../static/js/jquery-3.2.0.min.js"></script>
+	<script src="../static/js/signup.js"></script>
+
+</head>
+<body>
+<!-- Latest compiled and minified JavaScript -->
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <!-- logo -->
+        <div class="navbar-header">
+			<img class="navbar-brand" align="left" src="../static/images/hf.png" alt="Image can't be displayed">
+            <a href="#" class="navbar-brand">Healthy Family</a>
+        </div>
+
+        <!-- menu bar items -->
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <!-- Dropdown menu -->
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">About <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">About Healthy Family</a></li>
+						<li><a href="#">Purification Process</a></li>
+						<li><a href="#">Benefits</a></li>
+						<li><a href="#">News</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#">Contact Us</a></li>
+                <li><a href="/ShowSignin">Sign in</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+		<img align="right" src="../static/images/Healthy%20Family%20Logo%20transparent.png" alt="Image cannot be displayed">
+		<h2 align="center">Sign-up</h2>
+			<form class="form-signup">
+				<div class="form-group">
+					<h5 align="left"> Identification</h5>
+					<label for="inputName" class="sr-only">Name</label>
+					<input type="text" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus><br>
+					<label for="inputUsername" class="sr-only">Username</label>
+					<input type="text" name="InputUserName" id="InputUserName" class="form-control" placeholder="Username" required autofocus><br>
+				</div>
+
+				<div class="form-group">
+					<h5 align="left"> Contact Information</h5>
+					<label for="inputMobileno" class="sr-only">Mobile number </label>
+					<input type="text" name="inputMobileno" id="inputMobileno" class="form-control" placeholder="Mobile Number" required autofocus><br>
+					<label for="inputTelno" class="sr-only">Telephone number</label>
+					<input type="text" name="inputTelno" id="inputTelno" class="form-control" placeholder="Telephone number" required autofocus><br>
+					<label for="inputEmail" class="sr-only">Email address</label>
+					<input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br>
+					<label for="inputAddress" class="sr-only">Address</label>
+					<input type="text" name="inputAddress" id="inputAddress" class="form-control" placeholder="Address" required autofocus><br>
+				</div>
+
+				<div class="form-group">
+					<h5 align="left"> Security</h5>
+					<label for="inputPassword" class="sr-only">Password</label>
+					<input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required><br>
+					<button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button><br>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+<footer><p align="center">Copyright &copy; 2015 Healthy Family</p></footer>
+</body>
+</html>
