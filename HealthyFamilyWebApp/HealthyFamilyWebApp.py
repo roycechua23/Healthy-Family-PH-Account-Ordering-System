@@ -91,15 +91,23 @@ def securelogin(username):
     else:
         return render_template('error.html', error='Unauthorized Access')
 
-def loadOrders(username):
+def loadRowOrders():
     conn=mysql.connect()
     cursor=conn.cursor()
-    cursor.callproc('usp_showOrders',(username,))
+    cursor.callproc('usp_showOrders',(session.get('user'),))
     data=cursor.fetchall()
-
-
+    print(data)
     cursor.close()
     conn.close()
+    return len(data)
+
+def loadRowContent():
+    conn=mysql.connect()
+    cursor = conn.cursor()
+    cursor.callproc('usp_showOrders', (session.get('user'),))
+
+    data=cursor.fetchall()
+    return data
 
 @healthyfamily.route("/orderWindow")
 def orderWindow():
