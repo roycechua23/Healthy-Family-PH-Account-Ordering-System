@@ -72,10 +72,22 @@ def logout():
 
 @healthyfamily.route("/main/<username>")
 def securelogin(username):
-    if session.get('user'):
-        users=["adsa","bfsbs","cscasca","asda"]
-        loadOrders(username)
-        return render_template("main.html",username=username,users=users)
+    if session.get('user')==username:
+        print(username)
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute("SELECT user_name FROM useraccount WHERE user_username='{}' ".format(username))
+        name=cursor.fetchone()
+        if name is None:
+            return render_template('error.html', error='Unauthorized Access')
+        else:
+            # a = loadRowContent()
+            # for row in range(len(a)):
+            #     for element in range(len(a[row])):
+            #         print(a[row][element])
+
+            return render_template("main.html", name=name[0], rows=loadRowOrders(),
+                                   elements=4,values=loadRowContent())
     else:
         return render_template('error.html', error='Unauthorized Access')
 
@@ -113,51 +125,6 @@ def processOrder():
 @healthyfamily.route("/ShowSignup")
 def signup():
     return render_template('signup.html')
-
-# Failed code
-# @healthyfamily.route("/createAccount", methods=['POST','GET'])
-# def createAccount():
-#     print("function launched!")
-#
-#     if request.method == 'POST':
-#         print("Request Method is: {}".format(request.method))
-#         try:
-#             _name = request.form['inputName']
-#             _username = request.form['inputUserName']
-#             _mobileno = request.form['inputMobileno']
-#             _telno = request.form['inputTelno']
-#             _email = request.form['inputEmail']
-#             _address = request.form['inputAddress']
-#             _password = request.form['inputPassword']
-#             print("All forms retrieved")
-#             # validate the recieved values (Output should be true since all fields have values)
-#             if _name and _username and _mobileno and _telno and _email and _address and _password:
-#
-#                 # Call MySQL
-#                 #     conn = mysql.connect()
-#                 #     cursor = mysql.get_db().cursor()
-#                 conn = mysql.connect()
-#                 cursor = conn.cursor()
-#                 _hashed_password = generate_password_hash(_password)
-#                 cursor.callproc('usp_createUser',
-#                                 (_name, _username, _mobileno, _telno, _email, _address, _hashed_password))
-#                 data = cursor.fetchall()
-#
-#                 if len(data) is 0:
-#                     conn.commit()
-#                     return redirect('/')
-#                     # return json.dumps({'message': 'User created sucessfully !'})
-#                 else:
-#                     print("Something Wrong!")
-#                     return json.dumps({'error': str(data[0])})
-#             else:
-#                 return json.dumps({'message': '<span>Enter the Required Fields</span>'})
-#         except Exception as e:
-#             print("Some error catched")
-#             return json.dumps({'error': str(e)})
-#         finally:
-#             cursor.close()
-#             conn.close()
 
 @healthyfamily.route("/createAccount", methods=['POST','GET'])
 def createAccount():
