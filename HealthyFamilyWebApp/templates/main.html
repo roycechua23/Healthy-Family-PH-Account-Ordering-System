@@ -66,11 +66,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for row in range(rows) %}
                                         <tr>
-                                            {% for user in users %}
-                                            <td style="  font-family:Roboto;">{{ user }}</td>
+                                            {% for element in range(elements) %}
+                                            <td style="font-family:Roboto;">{{ values[row][element] }}</td>
                                             {% endfor %}
                                         </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
