@@ -30,7 +30,7 @@ def index():
 def signin():
     return render_template('signin.html')
 
-@healthyfamily.route("/validateLogin", methods=['GET','POST'])
+@healthyfamily.route("/validateLogin", methods=['POST'])
 def validate():
     if request.method == 'POST':
         try:
@@ -54,8 +54,8 @@ def validate():
 
             if check_password_hash(data[0],_password)==True:
                 session['user'] = _username
-                print(data[1])
-                return redirect('main/{}'.format(str(data[1]).title()))
+                print(_username)
+                return redirect('main/{}'.format(_username))
 
             else:
                 return render_template('error.html', error='Invalid username or password')
