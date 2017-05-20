@@ -115,6 +115,13 @@ def orderWindow():
         return render_template('orderwindow.html')
     else:
         return abort(401)
+    
+@healthyfamily.route("/modifyorderWindow")
+def orderWindow():
+    if session.get('user'):
+        return render_template('modifyorderwindow.html')
+    else:
+        return abort(401)
 
 @healthyfamily.route("/processOrder",methods=['POST'])
 def processOrder():
