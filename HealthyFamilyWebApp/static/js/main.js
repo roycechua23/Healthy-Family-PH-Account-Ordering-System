@@ -30,3 +30,9 @@ console.log("Order Window Launched");
 // window.alert("Hello World");
 window.open("/orderWindow", "window-name", "menubar=no,innerWidth=300,innerHeight=150,toolbar=no,location=no,screenX=400,screenY=40");
 }
+
+function showModifyOrderWindow(){
+console.log("Modify Order Window Launched");
+// window.alert("Hello World");
+window.open("/modifyorderWindow"", "window-name", "menubar=no,innerWidth=300,innerHeight=250,toolbar=no,location=no,screenX=400,screenY=40");
+}
