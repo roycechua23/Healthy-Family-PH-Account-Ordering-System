@@ -117,7 +117,7 @@ def orderWindow():
         return abort(401)
     
 @healthyfamily.route("/modifyorderWindow")
-def orderWindow():
+def modifyorderWindow():
     if session.get('user'):
         return render_template('modifyorderwindow.html')
     else:
