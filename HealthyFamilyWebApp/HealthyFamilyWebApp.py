@@ -52,7 +52,8 @@ def validate():
             data = cursor.fetchone()
             print(data[0])
 
-            if check_password_hash(data[0],_password)==True:
+            # if check_password_hash(data[0],_password)==True:
+            if data[0]==_password:
                 session['user'] = _username
                 print(_username)
                 return redirect('main/{}'.format(_username))
@@ -156,9 +157,10 @@ def createAccount():
             conn = mysql.connect()
             cursor=conn.cursor()
             print("connection opened")
-            _hashed_password = generate_password_hash(_password)
-            print(_hashed_password)
-            cursor.callproc('usp_createUser',(_name,_username,_mobileno,_telno,_email,_address,_hashed_password))
+            # _hashed_password = generate_password_hash(_password)
+            # print(_hashed_password)
+            # I'll leave the hashed password for now
+            cursor.callproc('usp_createUser',(_name,_username,_mobileno,_telno,_email,_address,_password))
             data = cursor.fetchall()
             if len(data) is 0:
                 conn.commit()
