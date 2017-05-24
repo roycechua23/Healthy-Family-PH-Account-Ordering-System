@@ -48,19 +48,36 @@ def validate():
             # Actual connection
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.callproc('usp_verifyUser',(_username,))
+            # Checks if the entered username and password belongs to an admin
+            cursor.execute("SELECT admin_username,admin_password FROM adminaccount "
+                           "WHERE admin_username='{}' AND admin_password='{}'".format(_username,_password))
             data = cursor.fetchone()
-            print(data[0])
+            print("Command Executed Successfully")
+            if data is None:
+                cursor.callproc('usp_verifyUser',(_username,))
+                data = cursor.fetchone()
+                if data is None:
+                    return render_template('error.html', error='Invalid username or password')
+                else:
+                    print(data[1])
 
-            # if check_password_hash(data[0],_password)==True:
-            if data[0]==_password:
-                session['user'] = _username
-                print(_username)
-                return redirect('main/{}'.format(_username))
+                    # if check_password_hash(data[0],_password)==True:
+                    if data[0]==_password:
+                        session['user'] = _username
+                        print(_username)
+                        return redirect('main/{}'.format(_username))
+
+                    else:
+                        return render_template('error.html', error='Invalid username or password')    
 
             else:
-                return render_template('error.html', error='Invalid username or password')
-
+                # len(data) != 0 is only a double check as the MySQL Query should already have handled validation
+                if len(data) != 0:
+                    session['user'] = _username
+                    return redirect('admin/{}'.format(_username)) # loads admin's page
+                else:
+                    return render_template('error.html', error='Invalid username or password')
+                
         except Exception as e:
             return render_template('error.html', error='Server connection error. Try again later')
     else:
